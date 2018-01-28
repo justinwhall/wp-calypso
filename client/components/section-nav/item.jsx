@@ -27,6 +27,7 @@ class NavItem extends PureComponent {
 		isExternalLink: PropTypes.bool,
 		disabled: PropTypes.bool,
 		count: PropTypes.oneOfType( [ PropTypes.number, PropTypes.bool ] ),
+		customNumberFormat: PropTypes.func,
 		className: PropTypes.string,
 		preloadSectionName: PropTypes.string,
 	};
@@ -75,7 +76,12 @@ class NavItem extends PureComponent {
 				>
 					<span className={ 'section-nav-' + itemClassPrefix + '__text' }>
 						{ this.props.children }
-						{ 'number' === typeof this.props.count && <Count count={ this.props.count } /> }
+						{ 'number' === typeof this.props.count && (
+							<Count
+								count={ this.props.count }
+								customNumberFormat={ this.props.customNumberFormat }
+							/>
+						) }
 					</span>
 				</a>
 			</li>

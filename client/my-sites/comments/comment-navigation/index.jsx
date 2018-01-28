@@ -51,6 +51,29 @@ const bulkActions = {
 	all: [ 'approve', 'unapprove', 'spam', 'trash' ],
 };
 
+/**
+ * Formats the comment count to show units in thousands
+ *
+ * @example
+ * countAbbreviation( 999 ) returns 999
+ * countAbbreviation( 1234 ) returns 1.2K
+ * countAbbreviation( 27892 ) returns 28K
+ *
+ * @param {Number} count - raw count
+ * @returns {String} - count string
+ */
+const countAbbreviation = function( count ) {
+	if ( count < 1000 ) {
+		return `${ count }`;
+	}
+	// Show 2 sig figs
+	if ( count < 10000 ) {
+		return `${ ( count / 1000 ).toFixed( 1 ) }K`;
+	}
+	// Take leading significant numbers
+	return `${ ( count / 1000 ).toFixed( 0 ) }K`;
+};
+
 export class CommentNavigation extends Component {
 	static defaultProps = {
 		isSelectedAll: false,
@@ -285,6 +308,7 @@ export class CommentNavigation extends Component {
 						<NavItem
 							key={ status }
 							count={ count }
+							customNumberFormat={ countAbbreviation }
 							onClick={ this.changeFilter( status ) }
 							path={ this.getStatusPath( status ) }
 							selected={ queryStatus === status }

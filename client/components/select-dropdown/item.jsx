@@ -17,6 +17,7 @@ import Count from 'components/count';
 class SelectDropdownItem extends Component {
 	static propTypes = {
 		children: PropTypes.string.isRequired,
+		customNumberFormat: PropTypes.func,
 		path: PropTypes.string,
 		isDropdownOpen: PropTypes.bool,
 		selected: PropTypes.bool,
@@ -58,7 +59,10 @@ class SelectDropdownItem extends Component {
 					</span>
 					{ 'number' === typeof this.props.count && (
 						<span data-text={ this.props.count } className="select-dropdown__item-count">
-							<Count count={ this.props.count } />
+							<Count
+								count={ this.props.count }
+								customNumberFormat={ this.props.customNumberFormat }
+							/>
 						</span>
 					) }
 				</a>

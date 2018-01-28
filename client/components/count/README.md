@@ -29,6 +29,10 @@ The number to be displayed. Make sure it's a number, not a string containing a n
 
 Boolean. Applies `is-primary` class and related styles.
 
+### `customNumberFormat`
+
+Function. If you have special formatting for counts, eg 12.1K instead of 12,147
+
 ## Custom Styling
 
 In some cases, it may be necessary to increase the font size or remove the border. In your component's style file, specify rules for the `.count` within your component's selector. For an example, see the `select-dropdown` component's style file.
