@@ -14,7 +14,7 @@ import Gridicon from 'gridicons';
  */
 import { getDocumentHeadTitle } from 'state/document-head/selectors';
 import { setLayoutFocus } from 'state/ui/layout-focus/actions';
-import PropTypeTranslatableString from 'components/translatable/proptype';
+import TranslatableString from 'components/translatable/proptype';
 
 class SidebarNavigation extends React.Component {
 	constructor( props ) {
@@ -48,7 +48,7 @@ class SidebarNavigation extends React.Component {
 SidebarNavigation.propTypes = {
 	title: PropTypes.string,
 	linkClassName: PropTypes.string,
-	sectionTitle: PropTypeTranslatableString,
+	sectionTitle: TranslatableString,
 	sectionName: PropTypes.string.isRequired,
 	setLayoutFocus: PropTypes.func.isRequired,
 };

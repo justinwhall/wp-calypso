@@ -20,14 +20,14 @@ import store from 'store';
 import { recordTracksEvent } from 'state/analytics/actions';
 import { toggleNotificationsPanel } from 'state/ui/actions';
 import { isNotificationsOpen } from 'state/selectors';
-import PropTypeTranslatableString from 'components/translatable/proptype';
+import TranslatableString from 'components/translatable/proptype';
 
 class MasterbarItemNotifications extends Component {
 	static propTypes = {
 		user: PropTypes.object.isRequired,
 		isActive: PropTypes.bool,
 		className: PropTypes.string,
-		tooltip: PropTypeTranslatableString,
+		tooltip: TranslatableString,
 		//connected
 		isNotificationsOpen: PropTypes.bool,
 	};
