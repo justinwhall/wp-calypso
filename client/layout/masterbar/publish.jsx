@@ -18,13 +18,14 @@ import { isMobile } from 'lib/viewport';
 import { preload } from 'sections-preload';
 import { getSelectedSite } from 'state/ui/selectors';
 import AsyncLoad from 'components/async-load';
+import PropTypeTranslatableString from 'components/translatable/proptype';
 
 class MasterbarItemNew extends React.Component {
 	static propTypes = {
 		user: PropTypes.object,
 		isActive: PropTypes.bool,
 		className: PropTypes.string,
-		tooltip: PropTypes.string,
+		tooltip: PropTypeTranslatableString,
 		// connected props
 		selectedSite: PropTypes.object,
 	};

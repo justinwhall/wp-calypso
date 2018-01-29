@@ -93,6 +93,11 @@ const communityTranslatorJumpstart = {
 			return displayedTranslationFromPage;
 		}
 
+		if ( 'boolean' === typeof optionsFromPage.textOnly && optionsFromPage.textOnly ) {
+			debug( 'respecting textOnly for string "' + originalFromPage + '"' );
+			return displayedTranslationFromPage;
+		}
+
 		const original_string = {};
 
 		const props = {
@@ -231,7 +236,7 @@ const communityTranslatorJumpstart = {
 		// eslint-disable-next-line
 		console.log( 'translationDataFromPage', translationDataFromPage );
 
-/*		if ( 'undefined' === typeof window.communityTranslator ) {
+		/*if ( 'undefined' === typeof window.communityTranslator ) {
 			if ( ! injectUrl ) {
 				debug( 'Community translator toggled before initialization' );
 				_shouldWrapTranslations = false;
