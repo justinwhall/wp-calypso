@@ -33,43 +33,38 @@ class Translatable extends Component {
 		}
 		const { singular, context, plural } = this.props;
 
+
 		const xhr = new XMLHttpRequest();
 		if ( 'withCredentials' in xhr ) {
-			xhr.open(
-				'POST',
-				'https://translate.wordpress.com/api/translations/-query-by-originals',
-				true
-			);
+			xhr.open( 'POST', 'https://translate.wordpress.com/api/translations/-query-by-originals', true );
 			xhr.withCredentials = true;
-			xhr.setRequestHeader( 'Content-type', 'application/x-www-form-urlencoded' );
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
 			// eslint-disable-next-line
 
 			const data = {
 				project: 'wpcom',
 				locale_slug: 'it',
-				original_strings: { singular, context, plural },
+				original_strings:  { singular, context, plural },
 			};
 
-			xhr.onreadystatechange = () => {
-				if ( xhr.readyState > 3 && xhr.status == 200 ) {
-					this.setState( { translatedData: JSON.parse( xhr.responseText ) } );
-				}
+			xhr.onreadystatechange = ()  => {
+				if (xhr.readyState>3 && xhr.status==200) {
+					this.setState( { translatedData: JSON.parse(xhr.responseText) } );
+				};
 			};
-			const params =
-				'project=wpcom&locale_slug=it&original_strings=' +
-				encodeURIComponent( JSON.stringify( data ) );
+			const params = "project=wpcom&locale_slug=it&original_strings=" + encodeURIComponent(JSON.stringify( data ))
 
-			xhr.send( params );
+			xhr.send( params  );
 		}
+
 
 		this.setState( { showTooltip: true } );
 	};
 
 	render() {
-		const translatedStr = this.state.translatedData
-			? this.state.translatedData[ 0 ].translations[ 0 ][ 'translation_0' ]
-			: '';
+
+		const translatedStr = this.state.translatedData ? this.state.translatedData[ 0 ].translations[0][ 'translation_0' ] : '';
 
 		return (
 			<data
@@ -89,11 +84,7 @@ class Translatable extends Component {
 				>
 					<FormFieldset>
 						<FormLabel htmlFor="something">something</FormLabel>
-						<FormTextInput
-							name="something"
-							placeholder="Add a new translation"
-							value={ translatedStr }
-						/>
+						<FormTextInput name="something" placeholder="Add a new translation" value={ translatedStr } />
 					</FormFieldset>
 					<FormButton type="button" isPrimary={ true }>
 						Submit something
