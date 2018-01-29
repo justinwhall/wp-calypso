@@ -3,7 +3,7 @@
 /**
  * External dependencies
  */
-import { get } from 'lodash';
+import { get, findIndex } from 'lodash';
 
 /**
  * Returns true if currently requesting invites for the given site, or false
@@ -31,6 +31,22 @@ export function getInvitesForSite( state, siteId ) {
 		return null;
 	}
 	return invites;
+}
+
+/**
+ * Returns an invite object for the given site and invite ID, or false otherwise.
+ *
+ * TODO: searching the object can probably be done in a cleaner manner.
+ *
+ * @param  {Object}  state    Global state tree
+ * @param  {Number}  siteId   Site ID
+ * @param  {String}  inviteId Invite ID
+ * @return {Object}           Invite object
+ */
+export function getSelectedInvite( state, siteId, inviteId ) {
+	const items = get( state, [ 'invites', 'items', siteId ], false );
+	const selectedIndex = findIndex( items, [ 'key', inviteId ] );
+	return get( state, [ 'invites', 'items', siteId, selectedIndex ], false );
 }
 
 /**
